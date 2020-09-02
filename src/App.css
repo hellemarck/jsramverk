@@ -3,6 +3,7 @@
 
 html {
     background-color: #f7f4ed;
+    font-family: Roboto;
 }
 
 .App {
@@ -74,6 +75,10 @@ li a:hover {
     margin: 20px auto;
     color: #727468;
     font-family: "Barlow";
+}
+
+.article-standard a {
+    color: #222;
 }
 
 @media (max-width: 1000px) {
