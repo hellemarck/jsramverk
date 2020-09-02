@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Arapey&family=Gothic+A1&family=Meddon&family=Arvo&family=Cormorant+Garamond:wght@300&family=Cormorant+Infant:wght@300&family=Cormorant:wght@300&family=DM+Serif+Display&family=Oswald&family=DM+Serif+Text&family=Inria+Serif:wght@300&family=Old+Standard+TT&family=Oranienbaum&family=Playfair+Display&family=Prata&family=Rozha+One&family=Ultra&family=Vidaloka&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Ubuntu&family=Barlow&family=Roboto&family=Open+Sans&family=Shanti&display=swap');
+
+html {
+    background-color: #f7f4ed;
+}
+
 .App {
   text-align: center;
+  font-family: Roboto;
 }
 
 .App-logo {
@@ -9,13 +17,15 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+      border-radius: 50%;
+    /* animation: App-logo-spin infinite 40s linear; */
   }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /* background-color: #282c34; */
+  background-color: #e7dece;
+  min-height: 40vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,8 +34,56 @@
   color: white;
 }
 
+nav {
+    text-align: center;
+    min-height: 60px;
+    /* background-color: #f7f4ed; */
+}
+
+ul {
+    margin-top: 50px;
+}
+
+nav li {
+    background-color: none;
+    display: inline;
+    margin: 10px;
+    padding: 20px;
+}
+
+li a {
+    color: black;
+    font-family: "Playfair Display";
+    /* text-transform: uppercase; */
+    text-decoration: none;
+    font-size: 24px;
+}
+
+li a:hover {
+    text-decoration: underline;
+}
+
+.article-standard {
+    background-color:#f7f4ed;
+    padding: 20px;
+    margin: auto;
+}
+
+.article-standard p {
+    width: 50%;
+    margin: 20px auto;
+    color: #727468;
+    font-family: "Barlow";
+}
+
+@media (max-width: 1000px) {
+    .article-standard p {
+        width: 70%;
+    }
+}
+
 .App-link {
-  color: #61dafb;
+  color: #888;
 }
 
 @keyframes App-logo-spin {
