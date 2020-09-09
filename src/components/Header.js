@@ -19,7 +19,7 @@ const Header = () => {
     return React.createElement(
         'header',
         {className: 'App-header'},
-        React.createElement('p', null, 'En sida byggd i React för kursen jsramverk, BTH.'),
+        React.createElement('p', {style: {fontStyle:'italic'}}, 'En sida byggd i React för kursen jsramverk, BTH.'),
         React.createElement('img', {
             className: 'App-logo',
             src: require('./img/me.jpg'),
