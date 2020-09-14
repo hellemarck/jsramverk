@@ -1,61 +1,52 @@
 import React from 'react';
 
-function Reports() {
-  return (
-      <div className="App">
-        <article className="article-standard">
+class Reports extends React.Component {
+    constructor(props) {
+        super(props);
 
-        <h2>GitHub</h2>
-        <p>The repository on GitHub for this page is <a href="https://github.com/hellemarck/jsramverk">here</a>.</p>
+        this.state = {
+            report: null,
+            week: null
+        };
+    }
 
-        <h2>App Installation</h2>
+    componentDidMount() {
+        var id = this.props.match.params.id;
+        var apiUrl = 'http://localhost:1337/reports/week/' + id;
 
-        <p>This project was installed with<br />
-        <b>npx create-react-app my-app</b></p>
+        fetch(apiUrl)
+            .then((response) => response.json())
+            .then(data => {
+                this.setState({
+                    report: data.data.report,
+                    week: data.data.week
+                });
+            });
+    }
 
+    render() {
+        var url = window.location.href.slice(0, -1);
+        var id = this.props.match.params.id;
+        return (
+            <div className="App">
 
-        <h2>Current installations</h2>
-
-        <p>Route installation with <br />
-        <b>npm install react-router-dom</b></p>
-
-        <h2>Available Scripts</h2>
-
-        <p><b>npm start</b><br />
-
-        Runs the app in the development mode on <b>http://localhost:3000</b><br />
-        The page will reload if you make edits.<br />
-        You will also see any lint errors in the console.</p>
-
-        <p><b>npm test</b><br />
-
-        Launches the test runner in the interactive watch mode.<br />
-        See the section about <a href="https://facebook.github.io/create-react-app/docs/running-tests">running tests</a> for more information.</p>
-
-        <p><b>npm run build</b><br />
-
-        Builds the app for production to the `build` folder.<br />
-        It correctly bundles React in production mode and optimizes the build for the best performance.
-
-        The build is minified and the filenames include the hashes.<br />
-        Your app is ready to be deployed!
-
-        See the section about <a href="https://facebook.github.io/create-react-app/docs/deployment">deployment for more information.</a></p>
-
-        <h2>Learn More</h2>
-
-        <p><a href="https://facebook.github.io/create-react-app/docs/getting-started">Create React App documentation</a><br />
-        <a href="https://reactjs.org/">React documentation</a></p>
-
-        <p><b>npm run build</b> fails to minify<br/ >
-        This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify</p>
-
-        <h2>Documentation</h2>
-        <p><b>Kmom01:</b> I'm getting to know the framework on a basic level, trying to organize my modules in a comfy way, work with exports and imports and ways to render them in routes. Also trying out functional components, class components and JSX.</p>
-
-        </article>
-        </div>
-    )
+            <nav className="reports">
+                <a href={`${url}1`}>kmom01</a>
+                <a href={`${url}2`}>kmom02</a>
+                <a href={`${url}3`}>kmom03</a>
+                <a href={`${url}4`}>kmom04</a>
+                <a href={`${url}5`}>kmom05</a>
+                <a href={`${url}6`}>kmom06</a>
+            </nav><br/>
+            <a href={"/editreport/" + id} className="button">Redigera innehåll</a>
+            <br/><br/>
+            <h2>Vecka {this.state.week}</h2>
+            <article className="article-standard"
+                dangerouslySetInnerHTML={{__html: this.state.report}} >
+            </article>
+            </div>
+        )
+    }
 }
 
 
