@@ -3,7 +3,7 @@
 const assert = require("assert");
 const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
-// const firefox = require('selenium-webdriver/firefox')
+const firefox = require('selenium-webdriver/firefox')
 const By = require("selenium-webdriver").By;
 // const chromedriver = require('chromedriver');
 
@@ -15,7 +15,10 @@ test.describe("Test the Me-app", function() {
     test.beforeEach(function(done) {
         this.timeout(30000);
         browser = new webdriver.Builder()
-            .withCapabilities(webdriver.Capabilities.firefox()).build();
+            .withCapabilities(webdriver.Capabilities.firefox())
+            .setFirefoxOptions(new firefox.Options().headless())
+            .forBrowser("firefox")
+            .build();
 
         browser.get("http://localhost:3000/reports/week/1");
         done();
