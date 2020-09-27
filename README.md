@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/hellemarck/jsramverk.svg?branch=master)](https://travis-ci.org/hellemarck/jsramverk)
+
 ## App Installation
 
 This project was installed with
