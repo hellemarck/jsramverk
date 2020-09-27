@@ -4,7 +4,8 @@ const assert = require("assert");
 const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
 const By = require("selenium-webdriver").By;
-const chrome = require('selenium-webdriver/chome')
+const chromedriver = require('chromedriver');
+const chrome = require('selenium-webdriver/chrome')
 let browser;
 
 // Test Suite
