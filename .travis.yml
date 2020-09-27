@@ -16,10 +16,9 @@ git:
 
 before_script:
     # - npm install selenium-webdriver@^3.6.0
-    - npm install -g forever
+    - npm install
 
 script:
-    - forever start -c 'npm start' ./
     - npm test
 
 after_script:
