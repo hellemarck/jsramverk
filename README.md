@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/hellemarck/jsramverk.svg?branch=master)](https://travis-ci.org/hellemarck/jsramverk)
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hellemarck/jsramverk/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hellemarck/jsramverk/?branch=master)
+
 ## App Installation
 
 This project was installed with
