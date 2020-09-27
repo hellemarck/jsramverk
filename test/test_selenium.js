@@ -17,10 +17,8 @@ var browser = new webdriver.Builder().
 browser.get("http://localhost:3000/reports/week/1");
 
 // Way 2
-browser.getTitle()
-    .then(function(title) {
-        assert.equal(title, "Min me-app");
-    .then(() => done());
+browser.getTitle().then(function(title) {
+    console.log(title);
 });
 
 browser.quit();
