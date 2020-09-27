@@ -2,7 +2,7 @@ language: node_js
 
 node_js:
     - "node"
-    - "14"
+    # - "14"
     - "12"
     - "10"
 
@@ -12,12 +12,12 @@ git:
     submodules: false
 
 before_script:
-    - npm install selenium-webdriver@^3.6.0
-    - npm install
+    - npm install -g forever
 
 script:
     - npm test
 
 after_success:
+    - forever stopall
     - npm run report-coveralls
     - npm run report-codecov

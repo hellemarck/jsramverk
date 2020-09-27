@@ -3,9 +3,10 @@
 const assert = require("assert");
 const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
+const firefox = require('selenium-webdriver/firefox')
 const By = require("selenium-webdriver").By;
-const chromedriver = require('chromedriver');
-const chrome = require('selenium-webdriver/chrome')
+// const chromedriver = require('chromedriver');
+
 let browser;
 
 // Test Suite
@@ -14,7 +15,7 @@ test.describe("Test the Me-app", function() {
     test.beforeEach(function(done) {
         this.timeout(30000);
         browser = new webdriver.Builder().
-            withCapabilities(webdriver.Capabilities.chrome()).build();
+            withCapabilities(webdriver.Capabilities.firefox()).build();
 
         browser.get("http://localhost:3000/reports/week/1");
         done();
