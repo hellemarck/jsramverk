@@ -2,9 +2,9 @@ language: node_js
 
 node_js:
     - "node"
+    - "14"
+    - "12"
     - "10"
-    - "8"
-    - "6"
 
 sudo: false
 
@@ -12,6 +12,7 @@ git:
     submodules: false
 
 before_script:
+    - npm install selenium-webdriver@^3.6.0
     - npm install
 
 script:

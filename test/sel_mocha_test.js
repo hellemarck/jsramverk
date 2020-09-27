@@ -1,3 +1,5 @@
+"use strict";
+
 const assert = require("assert");
 const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
