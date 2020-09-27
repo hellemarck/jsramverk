@@ -8,6 +8,7 @@
 const webdriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/firefox');
 const chromedriver = require('chromedriver');
+const firefox = require('selenium-webdriver/firefox')
 
 var browser = new webdriver.Builder().
     withCapabilities(webdriver.Capabilities.firefox())
