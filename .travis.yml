@@ -15,7 +15,7 @@ git:
 #     firefox: "60.0.1"
 
 before_script:
-    - npm install selenium-webdriver@^3.6.0
+    # - npm install selenium-webdriver@^3.6.0
     - npm install -g forever
 
 script:

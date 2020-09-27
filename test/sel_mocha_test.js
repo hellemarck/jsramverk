@@ -17,6 +17,7 @@ test.describe("Test the Me-app", function() {
         browser = new webdriver.Builder()
             .withCapabilities(webdriver.Capabilities.firefox())
             .setFirefoxOptions(new firefox.Options().headless())
+            .forBrowser("firefox")
             .build();
 
         browser.get("http://localhost:3000/reports/week/1");
