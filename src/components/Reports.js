@@ -12,7 +12,7 @@ class Reports extends React.Component {
 
     componentDidMount() {
         var id = this.props.match.params.id;
-        var apiUrl = 'http://localhost:1337/reports/week/' + id;
+        var apiUrl = 'https://me-api.mh-jsramverk.me/reports/week/' + id;
 
         fetch(apiUrl)
             .then((response) => response.json())

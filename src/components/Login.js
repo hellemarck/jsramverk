@@ -21,7 +21,7 @@ class Login extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const apiUrl = 'http://localhost:1337/login/';
+        const apiUrl = 'https://me-api.mh-jsramverk.me/login/';
 
         const login = {
             'email': this.state.email,

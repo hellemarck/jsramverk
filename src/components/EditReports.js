@@ -13,7 +13,7 @@ class EditReports extends React.Component {
 
     componentDidMount() {
         var id = this.props.match.params.id;
-        var apiUrl = 'http://localhost:1337/reports/week/' + id;
+        var apiUrl = 'https://me-api.mh-jsramverk.me/reports/week/' + id;
 
         fetch(apiUrl)
             .then((response) => response.json())
@@ -28,7 +28,7 @@ class EditReports extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const apiUrl = 'http://localhost:1337/reports/';
+        const apiUrl = 'https://me-api.mh-jsramverk.me/reports/';
         // const token = localStorage.getItem('token');
 
         const edit = {
