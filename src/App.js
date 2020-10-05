@@ -15,7 +15,8 @@ import Reports from './components/Reports';
 import Header from './components/Header';
 import Register from './components/Register';
 import Login from './components/Login';
-import EditReports from './components/EditReports'
+import EditReports from './components/EditReports';
+import Chat from './components/Chat';
 
 function App() {
   return (
@@ -35,6 +36,9 @@ function App() {
             <li>
               <Link to="/register">> skapa användare</Link>
             </li>
+            <li>
+              <Link to="/chat">> chatt</Link>
+            </li>
           </ul>
         </nav>
 
@@ -49,6 +53,7 @@ function App() {
           <Route exact strict path="/login" component={Login}/>
           <Route exact strict path="/register" component={Register}/>
           <Route exact strict path="/editreport/:id" component={EditReports}/>
+          <Route exact strict path="/chat" component={Chat}/>
         </Switch>
       </div>
     </Router>
