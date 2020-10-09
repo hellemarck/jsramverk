@@ -1,8 +1,8 @@
 import React from 'react';
 import io from 'socket.io-client';
 
-const allMessages = document.getElementById("all-messages");
-const newMessage = document.getElementById("new-message");
+// const allMessages = document.getElementById("all-messages");
+// const newMessage = document.getElementById("new-message");
 
 class Chat extends React.Component {
     constructor() {
@@ -12,15 +12,33 @@ class Chat extends React.Component {
             users: []
         }
 
-        this.socket = io('https://socket-server.mh-jsramverk.me');
-        // this.socket = io('http://localhost:3001');
+        this.socket = io('http://localhost:3001/');
+        // this.socket = io('https://socket-server.mh-jsramverk.me');
         this.newMessage = document.getElementById("new-message");
     }
 
     componentDidMount() {
         const allMessages = document.getElementById("all-messages");
+
+        // get chat history at first page load
+        this.socket.emit('get history');
+
+        this.socket.on('get history', function(res) {
+            res.map((msg, i) => {
+                const prevMessage = document.createElement("p");
+                prevMessage.textContent = "[" + msg.currtime + "] " + msg.user + " sa: " + msg.msg;
+                allMessages.appendChild(prevMessage);
+            })
+        });
+
+        this.socket.on('clear chat', function() {
+            console.log("chat cleared");
+            window.location.reload();
+            return false;
+        })
+
+        // add a sent chat msg to view
         this.socket.on('chat message', function (message) {
-            console.log("efter socket msg");
             let addedMessage = document.createElement("p");
 
             addedMessage.textContent =
@@ -29,8 +47,10 @@ class Chat extends React.Component {
                 + message.msg;
 
             allMessages.appendChild(addedMessage);
+            allMessages.scrollTop = allMessages.scrollHeight;
         });
 
+        // let others know when new user connects (live update, not saving in db)
         this.socket.on('user connected', function (user) {
             let newUserConnected = document.createElement("p");
             newUserConnected.style.fontStyle = "italic";
@@ -41,16 +61,23 @@ class Chat extends React.Component {
         })
     }
 
+    // clear the chat history - not really secure to use obvi
+    clearChat = (event) => {
+        window.confirm("Är du säker? Åtgärden går inte att ångra")
+
+        this.socket.emit('clear chat');
+    }
+
+    // handle username
     handleUser = (event) => {
         this.setState({ user: event.target.value })
     }
 
+    // send the chat msg
     handleEnter = (event) => {
         if (event.key === "Enter") {
             this.checkUser();
             const timeStamp = new Date().toLocaleString();
-            console.log("före emit on enter");
-
             this.socket.emit('chat message', {
                 currtime: timeStamp,
                 user: this.state.user,
@@ -61,6 +88,7 @@ class Chat extends React.Component {
         }
     }
 
+    // check if use has connected before or is new
     checkUser = () => {
         if (!(this.state.users.includes(this.state.user))) {
             this.state.users.push(this.state.user);
@@ -73,12 +101,13 @@ class Chat extends React.Component {
         }
     };
 
+    // render the html page
     render() {
         return (
             <div className="App">
                 <article className="article-standard">
                     <h3>Chatt</h3>
-                    <div id="all-messages" class="all-messages"></div>
+                    <div id="all-messages" className="all-messages"></div>
 
                     <p><strong>Ange ditt namn:</strong></p>
                     <input
@@ -93,17 +122,24 @@ class Chat extends React.Component {
                     <input
                         id="new-message"
                         type="text"
-                        class="new-message"
+                        className="new-message"
                         required
                         name="msg"
                         onKeyDown= {this.handleEnter}
                     />
-                    <p><i>Tryck enter för att skicka</i></p>
+                    <p><i>Tryck enter för att skicka</i></p><br />
+
+                    <input
+                        className="button"
+                        type="submit"
+                        value="RENSA CHATTHISTORIK"
+                        onClick= {this.clearChat} />
+
+                    <p><i>OBS! Detta raderar all historik, går ej att ångra</i></p>
                 </article>
             </div>
         )
     }
 }
-
 
 export default Chat;
